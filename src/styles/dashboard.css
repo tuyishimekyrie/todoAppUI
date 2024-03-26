@@ -1,0 +1,86 @@
+body {
+  background-color: #172554;
+
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+     background: rgba(255, 255, 255, 0.09);
+}
+.content{
+    display: flex;
+    align-items: center;
+    gap: 2rem
+}
+.message p {
+    color: #ccc;
+}
+.header img{
+     width: 5rem
+}
+.logout button {
+    padding: .35rem 1rem;
+}
+.logout button:hover{
+    transform: scale(1.1);
+    transition: .2s ease in;
+    cursor:pointer;
+}
+.dataContent {
+    display: flex;
+    gap: 6rem
+}
+.cards {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 1rem 0 0  0;
+    gap: 2rem;
+    /* justify-content: flex-start */
+}
+.card {
+    text-align:center;
+    background: rgba(255,255,255,.14);
+    border-radius: .25rem;
+}
+.cardAlign {
+    display: flex;
+    gap: 5rem;
+    padding: 1rem
+}
+.card h3,.card span {
+    color: #ccc;
+}
+.cardAlign button {
+    border: none;
+    outline: none;
+    padding: .5rem 1rem;
+    border-radius: .25rem;
+}
+.cardAlign button:hover {
+    cursor: pointer;
+    background-color: #2563eb;
+    color: #ccc;
+    transition: all .2s ease;
+}
+.dataGraph {
+    margin: 1.2rem 0 0 0 ;
+    display: flex;
+    gap: 2rem;
+    align-items: start;
+    flex-wrap:wrap;
+}
+.todoUser {
+    border-radius: .25rem;
+    padding: 0 .5rem ;
+    display: flex;
+    align-items: center;
+    gap: 6rem;
+    background-color: rgba(255,255,255,.12)
+}
+.todoUser p {
+    color: #ccc;
+}
+.todoUser span {
+    color:#3b82f6;
+}

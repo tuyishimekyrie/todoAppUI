@@ -1,0 +1,112 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+  background-color: #172554;
+max-height: 100vh;
+overflow:hidden
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: .5rem;
+    align-items: center;
+    border-bottom: 1px solid #475569;
+}
+header img {
+    width: 6rem;
+}
+header p {
+    color: #ccc;
+}
+header button {
+     padding: .35rem 1rem;
+     background-color: #dc2626;
+     border: none;
+     border-radius: .25rem;
+     color: #ccc;
+}
+header button:hover{
+    transition: .2s ease in;
+    cursor:pointer;
+}
+
+
+section {
+    display: flex;
+    margin: .5rem 2rem;
+    align-items: flex-start;
+    gap: 6rem 
+}
+form {
+    margin: 2rem 1rem ;
+}
+form h1 {
+    color : #fff;
+    /* text-align: center; */
+}
+form .input {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+form label {
+    padding: 1rem 0 0 0;
+    color: #ccc;
+}
+form input {
+    padding: .45rem .85rem;
+    outline: none;
+}
+form  button {
+    margin: 2rem 0 0 0;
+
+    padding: .35rem 1rem;
+     background-color: #1d4ed8;
+     border: none;
+     border-radius: .25rem;
+     color: #ccc;
+}
+form button:hover {
+    cursor: pointer;
+}
+.list h1{
+color: #fff;
+padding: 2rem 0;
+}
+.list p {
+    color: #ccc;
+}
+.renderList {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-height: 80vh;
+    overflow-y:scroll;
+    padding: 3rem;
+}
+.todolist {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    justify-content: space-between;
+    border: 1px solid #d4d4d8;
+    padding: 1rem;
+    border-radius: .35rem;
+}
+.todolist:hover {
+    cursor:pointer;
+    transform: scale(1.2);
+    transition: all .1s ease-in-out;
+    background-color: rgba(255,255,255,.12)
+}
+.todolist .name {
+    color: #ccc;
+}
+.todolist .todoactions {
+    display: flex;
+    align-items: center;
+    gap: 1rem
+}
