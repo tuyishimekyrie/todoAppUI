@@ -60,7 +60,8 @@ img {
   display: flex;
   flex-wrap:wrap;
   gap: .5rem;
-  margin: 5vh 0 0 0 ;
+  margin: 2.5vh 0 0 0 ;
+  /* padding-bottom: 20rem */
 }
 
 .other .link {
