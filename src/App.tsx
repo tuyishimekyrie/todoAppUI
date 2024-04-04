@@ -1,18 +1,18 @@
 import  { useEffect } from "react";
 // import Signup from "./pages/Signup";
 import { useDispatch, useSelector } from "react-redux";
-import Dashboard from "./pages/Dashboard";
-import UserDashboard from "./pages/UserDashboard";
+// import Dashboard from "./pages/Dashboard";
+// import UserDashboard from "./pages/UserDashboard";
 import { RootState } from "./state/store";
 import { login } from "./state/counter/authSlice";
 import Login from "./pages/Login";
 
 export default function App() {
   const authValue = useSelector((state: RootState) => state.auth.user);
-  const isAuthenticated = useSelector(
-    (state: RootState) => state.auth.isAuthenticated
-  );
-  const isAdmin = useSelector((state: RootState) => state.auth.user?.isAdmin);
+  // const isAuthenticated = useSelector(
+    // (state: RootState) => state.auth.isAuthenticated
+  // );
+  // const isAdmin = useSelector((state: RootState) => state.auth.user?.isAdmin);
   const dispatch = useDispatch();
   console.log(authValue?.isAdmin);
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function App() {
   }, [dispatch]);
   return (
     <>
-      {isAuthenticated ? (
+      {/* {isAuthenticated ? (
         isAdmin ? (
           <Dashboard />
         ) : (
@@ -36,7 +36,8 @@ export default function App() {
       ) : (
         // <Signup />
         <Login />
-      )}
+      )} */}
+      <Login/>
     </>
   );
 }
