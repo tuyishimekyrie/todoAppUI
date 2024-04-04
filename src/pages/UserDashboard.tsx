@@ -79,14 +79,17 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         return;
       }
 
-      const response = await fetch("http://localhost:8000/api/todos/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-auth-token": `${token}`,
-        },
-        body: JSON.stringify({ title: todoName }),
-      });
+      const response = await fetch(
+        "https://todoappapi-nk0o.onrender.com/api/todos/create",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-auth-token": `${token}`,
+          },
+          body: JSON.stringify({ title: todoName }),
+        }
+      );
 
       if (response.ok) {
         const newTodo: Todo = await response.json(); // Assuming the server returns the created todo object
@@ -116,13 +119,16 @@ const handleDelete = async (id: number) => {
     }
     console.log(id)
 
-    const response = await fetch(`http://localhost:8000/api/todos/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        "x-auth-token": `${token}`,
-      },
-    });
+    const response = await fetch(
+      `https://todoappapi-nk0o.onrender.com/api/todos/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": `${token}`,
+        },
+      }
+    );
 
     if (response.ok) {
       // Remove the deleted todo from the UI
@@ -148,7 +154,7 @@ const handleDelete = async (id: number) => {
     }
 
     const response = await fetch(
-      `http://localhost:8000/api/todos/${id}/complete`,
+      `https://todoappapi-nk0o.onrender.com/api/todos/${id}/complete`,
       {
         method: "PATCH", // or "PATCH" depending on your API design
         headers: {
