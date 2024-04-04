@@ -22,7 +22,6 @@ export default function App() {
       const isAdmin = isAdminString ? JSON.parse(isAdminString) : false;
       console.log(isAdmin);
 
-      // Dispatch login action with user object
       dispatch(login({ token, isAdmin }));
     }
   }, [dispatch]);

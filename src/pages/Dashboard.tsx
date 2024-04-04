@@ -1,10 +1,12 @@
-import  { useEffect, useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useEffect, useState } from "react";
 import logo from "../assets/logo.png";
 import "../styles/dashboard.css";
 import { useDispatch } from "react-redux";
 import { logout } from "../state/counter/authSlice";
+import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
-// Define the Todo interface
 interface Todo {
   _id: string;
   title: string;
@@ -15,14 +17,22 @@ interface Todo {
 }
 
 export default function Dashboard() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [data, setData] = useState<Todo[]>([]); // Use the Todo interface as the state type
+  const [data, setData] = useState<Todo[]>([]);
+  const [userName, setUserName] = useState();
 
   const handleLogout = () => {
     dispatch(logout());
+    navigate("/login")
   };
 
   useEffect(() => {
+    const tokenData = localStorage.getItem("token");
+    if (tokenData) {
+      const decoded: any = jwtDecode(tokenData);
+      setUserName(decoded.name);
+    }
     fetchData();
   }, []);
 
@@ -44,7 +54,7 @@ export default function Dashboard() {
         }
       );
       if (response.ok) {
-        const jsonData: Todo[] = await response.json(); // Ensure jsonData is of type Todo[]
+        const jsonData: Todo[] = await response.json();
         setData(jsonData);
         console.log("Data:", jsonData);
       } else {
@@ -89,7 +99,7 @@ export default function Dashboard() {
         </div>
         <div className="content">
           <div className="message">
-            <p>Welcome Tuyishime Hope</p>
+            <p>Welcome {userName}</p>
           </div>
           <div className="logout">
             <button onClick={handleLogout}>Logout</button>
@@ -101,8 +111,8 @@ export default function Dashboard() {
           <div className="card">
             <h3>Todos</h3>
             <div className="cardAlign">
+              <span>Total Todos:</span>
               <span>{data.length}</span>
-              <button>View All</button>
             </div>
           </div>
           <div className="card">

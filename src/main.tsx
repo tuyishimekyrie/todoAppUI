@@ -10,6 +10,7 @@ import NotFoundPage from "./pages/NotFoundPage.tsx";
 import { Provider } from "react-redux";
 import { store } from "./state/store.ts";
 import Signup from "./pages/Signup.tsx";
+import ProtectedRoutes from "./routes/ProtectedRoutes.tsx";
 
 const router = createBrowserRouter([
   {
@@ -27,18 +28,26 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <Dashboard />,
+    element: (
+      <ProtectedRoutes>
+        <Dashboard />
+      </ProtectedRoutes>
+    ),
   },
   {
     path: "/user",
-    element: <UserDashboard />,
+    element: (
+      <ProtectedRoutes>
+        <UserDashboard />
+      </ProtectedRoutes>
+    ),
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Provider store={store}>
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </Provider>
     {/* <App /> */}
   </React.StrictMode>

@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import "../styles/signup.css";
 import signupImage from "../assets/signup.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Toaster, toast } from "sonner";
 
 export default function Signup() {
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const [person, setPerson] = useState<{
     name: string;
     email: string;
@@ -33,13 +36,13 @@ export default function Signup() {
       setPasswordMismatch(true);
       return;
     }
-
+    setIsLoading(true);
     // Prepare data to send to the server
     const userData = {
       name: person.name,
       email: person.email,
       password: person.password,
-      isAdmin: false, 
+      isAdmin: false,
     };
 
     try {
@@ -53,7 +56,7 @@ export default function Signup() {
           body: JSON.stringify(userData),
         }
       );
-
+      toast.loading("Loading data from server...");
       if (!response.ok) {
         throw new Error("Failed to create account");
       }
@@ -66,9 +69,11 @@ export default function Signup() {
         confirmPassword: "",
       });
 
-        alert("Account created successfully!");
-        window.location.href = "/login"
+      toast.success("Account created successfully!");
+      setIsLoading(false);
+      navigate("/login");
     } catch (error) {
+      setIsLoading(false);
       console.error("Error creating account:", error);
       alert("Failed to create account. Please try again later.");
     }
@@ -84,10 +89,13 @@ export default function Signup() {
       setPasswordMismatch(false);
     }
   };
-
+  if (isLoading) {
+    toast.loading("Sending Data to the Server...");
+  }
   return (
-    <div className="container">
+    <div className="container app">
       <img src={signupImage} alt="" />
+      <Toaster position="top-right" richColors />
       <h3>Create Account Here!</h3>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div className="input">
@@ -135,13 +143,15 @@ export default function Signup() {
           />
           {passwordMismatch && <p className="error">Passwords do not match</p>}
         </div>
-        <button className="submitBtn" type="submit">
-          Submit
+        <button className="submitBtn" type="submit" disabled={isLoading}>
+          {isLoading ? "Submitting...." : "Submit"}
         </button>
 
         <div className="other">
-        <p>Already Have an account ?</p>
-        <Link to="/login" className="link">Login</Link>
+          <p>Already Have an account ?</p>
+          <Link to="/login" className="link">
+            Login
+          </Link>
         </div>
       </form>
     </div>

@@ -1,112 +1,152 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
 body {
   background-color: #172554;
-max-height: 100vh;
-overflow:hidden
+  max-height: 100vh;
+  overflow: hidden;
+  width: 100%;
 }
 header {
-    display: flex;
-    justify-content: space-between;
-    padding: .5rem;
-    align-items: center;
-    border-bottom: 1px solid #475569;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  /* padding: .25rem; */
+  padding-top: .5rem;
+  align-items: center;
+  border-bottom: 1px solid #475569;
 }
 header img {
-    width: 6rem;
+  width: 6rem;
 }
 header p {
-    color: #ccc;
+  color: #ccc;
 }
 header button {
-     padding: .35rem 1rem;
-     background-color: #dc2626;
-     border: none;
-     border-radius: .25rem;
-     color: #ccc;
+  padding: 0.35rem 1rem;
+  background-color: #dc2626;
+  border: none;
+  border-radius: 0.25rem;
+  color: #ccc;
 }
-header button:hover{
-    transition: .2s ease in;
-    cursor:pointer;
+header button:hover {
+  transition: 0.2s ease in;
+  cursor: pointer;
 }
-
 
 section {
-    display: flex;
-    margin: .5rem 2rem;
-    align-items: flex-start;
-    gap: 6rem 
+  display: flex;
+  margin: 0.5rem 2rem;
+  align-items: flex-start;
+  gap: 6rem;
 }
 form {
-    margin: 2rem 1rem ;
+  margin: 2rem 1rem;
 }
 form h1 {
-    color : #fff;
-    /* text-align: center; */
+  color: #fff;
+  /* text-align: center; */
 }
 form .input {
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 form label {
-    padding: 1rem 0 0 0;
-    color: #ccc;
+  padding: 1rem 0 0 0;
+  color: #ccc;
 }
 form input {
-    padding: .45rem .85rem;
-    outline: none;
+  padding: 0.45rem 0.85rem;
+  outline: none;
 }
-form  button {
-    margin: 2rem 0 0 0;
+form button {
+  margin: 2rem 0 0 0;
 
-    padding: .35rem 1rem;
-     background-color: #1d4ed8;
-     border: none;
-     border-radius: .25rem;
-     color: #ccc;
+  padding: 0.35rem 1rem;
+  background-color: #1d4ed8;
+  border: none;
+  border-radius: 0.25rem;
+  color: #ccc;
 }
 form button:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
-.list h1{
-color: #fff;
-padding: 2rem 0;
+.list h1 {
+  color: #fff;
+  padding: 2rem 0;
+  text-align: center;
 }
 .list p {
-    color: #ccc;
+  color: #ccc;
 }
 .renderList {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    max-height: 80vh;
-    overflow-y:scroll;
-    padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-height: 80vh;
+  overflow-y: scroll;
+  padding: 3rem;
+   scroll-behavior: smooth;
+}
+.renderList::-webkit-scrollbar {
+  width: 10px; /* Width of the scrollbar */
+}
+
+.renderList::-webkit-scrollbar-track {
+  background: #1d4ed8; /* Color of the scrollbar track */
+}
+
+.renderList::-webkit-scrollbar-thumb {
+  background: #60a5fa; /* Color of the scrollbar thumb */
+  border-radius: 5px; /* Radius of the scrollbar thumb */
+}
+
+.renderList::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color of the scrollbar thumb on hover */
 }
 .todolist {
-    display: flex;
-    align-items: center;
-    gap: 4rem;
-    justify-content: space-between;
-    border: 1px solid #d4d4d8;
-    padding: 1rem;
-    border-radius: .35rem;
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  justify-content: space-between;
+  border: 1px solid #d4d4d8;
+  padding: 1rem;
+  border-radius: 0.35rem;
 }
 .todolist:hover {
-    cursor:pointer;
-    transform: scale(1.2);
-    transition: all .1s ease-in-out;
-    background-color: rgba(255,255,255,.12)
+  cursor: pointer;
+  transform: scale(1.12);
+  transition: all 0.1s ease-in-out;
+  background-color: rgba(255, 255, 255, 0.085);
 }
 .todolist .name {
-    color: #ccc;
+  color: #ccc;
 }
 .todolist .todoactions {
-    display: flex;
-    align-items: center;
-    gap: 1rem
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.icon:hover {
+  color: #000;
+}
+.updateInput {
+  outline: none;
+  padding: 0.5rem;
+}
+.updateBtn {
+  border: none;
+  outline: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+}
+.updateBtn:hover {
+  cursor: pointer;
+  background: #1e40af;
+  color: #fff;
 }

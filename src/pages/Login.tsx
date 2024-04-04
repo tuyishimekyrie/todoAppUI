@@ -4,16 +4,18 @@ import signupImage from "../assets/signup.svg";
 import { login } from "../state/counter/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../state/store";
-import { Link } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Toaster, toast } from "sonner";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const authValue = useSelector((state: RootState) => state.auth.user);
+  const navigate = useNavigate();
   // const history = useNavigate();
-  console.log(authValue)
+  console.log(authValue);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -24,6 +26,7 @@ export default function Login() {
     }
 
     try {
+      setIsLoading(true);
       const response = await fetch(
         "https://todoappapi-nk0o.onrender.com/api/auth",
         {
@@ -34,51 +37,37 @@ export default function Login() {
           body: JSON.stringify({ email, password }),
         }
       );
+     
 
       if (response.ok) {
         // const jwt = await response.text(); // Assuming the JWT is returned as text
         // console.log("JWT:", jwt);
-         const data = await response.json();
+        const data = await response.json();
         const user = {
           token: data.token,
           isAdmin: data.isAdmin,
         };
-console.log("user",data)
+        console.log("user", data);
         // Dispatch login action after successful login
+        setIsLoading(false);
         dispatch(login(user));
-        window.location.href="/"
-        // Handle the JWT as needed, e.g., store it in local storage or state
-        // localStorage.setItem("sessionTokenTodoApp", jwt);
+        // window.location.href = "/";
+        navigate("/user")
+        toast.success("Successfully Logged in")
 
-        // Retrieve the stored data from localStorage
-        // const storedData = localStorage.getItem("sessionTokenTodoApp");
-
-        // if (storedData) {
-        //   try {
-        //     // Parse the stored data as JSON
-        //     // const userData = JSON.parse(storedData);
-
-        //     // Check if the isAdmin property exists and is true
-        //     // if (userData.isAdmin) {
-        //     //   // Redirect to admin dashboard
-        //     //  window.location.href="/admin"
-        //     // } else {
-        //     //   // Redirect to user dashboard
-        //     //   window.location.href="/user"
-        //     // }
-
-        //   } catch (error) {
-        //     console.error("Error parsing stored data:", error);
-        //   }
-        // } else {
-        //   console.log("No stored data found in localStorage");
-        // }
       } else {
+        setIsLoading(false);
+         toast.dismiss(); 
+         toast.error("Failed to log in. Please check your credentials.");
         console.error("Failed to login. Status:", response.status);
         // Handle failed login, e.g., display error message to the user
       }
+ 
+   
     } catch (error) {
+      setIsLoading(false);
       console.error("Error:", error);
+      toast.error("Invalid Email or Password")
     }
   };
 
@@ -93,9 +82,20 @@ console.log("user",data)
   }) => {
     setPassword(e.target.value);
   };
-
+  if (isLoading) {
+        
+  //       // toast.promise(Promise.resolve(response), {
+  //       //   loading: "Loading...",
+  //       //   success: "Login successful!",
+  //       //   error: "An error occurred while logging in.",
+  //   // });
+    toast.dismiss();
+    toast.loading("Loading...")
+  //   // return;
+  }
+  console.log(isLoading)
   return (
-    <div className="container">
+    <div className="container app">
       <img src={signupImage} alt="" />
       <h3>Login Here!</h3>
       <form onSubmit={handleSubmit}>
@@ -121,12 +121,19 @@ console.log("user",data)
             onChange={handlePasswordChange}
           />
         </div>
-        <button
+        {/* <button
           type="submit"
           className="submitBtn"
           disabled={!email || !password}
         >
           Submit
+        </button> */}
+        <button
+          type="submit"
+          className="submitBtn"
+          disabled={!email || !password || isLoading}
+        >
+          {isLoading ? "Logging in..." : "Submit"}
         </button>
         <div className="other">
           <p>Dont't Have an account ?</p>
@@ -135,6 +142,7 @@ console.log("user",data)
           </Link>
         </div>
       </form>
+      <Toaster position="top-right" richColors />
     </div>
   );
 }

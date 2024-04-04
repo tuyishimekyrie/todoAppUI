@@ -1,6 +1,8 @@
 body {
   background-color: #172554;
-
+  height: 100%;
+  width:100%;
+  overflow: none;
 }
 .navbar {
     display: flex;
@@ -10,7 +12,7 @@ body {
 .content{
     display: flex;
     align-items: center;
-    gap: 2rem
+    gap: 2rem;
 }
 .message p {
     color: #ccc;
@@ -28,7 +30,9 @@ body {
 }
 .dataContent {
     display: flex;
-    gap: 6rem
+    gap: 6rem;
+    padding: 0 1rem 
+
 }
 .cards {
     display: flex;
@@ -42,11 +46,13 @@ body {
     text-align:center;
     background: rgba(255,255,255,.14);
     border-radius: .25rem;
+   width: 20vw;
 }
 .cardAlign {
     display: flex;
     gap: 5rem;
-    padding: 1rem
+    padding: 1rem;
+    justify-content: space-between;
 }
 .card h3,.card span {
     color: #ccc;
@@ -69,17 +75,48 @@ body {
     gap: 2rem;
     align-items: start;
     flex-wrap:wrap;
+    overflow-y:scroll;
+    height: 100vh;
+    padding: 1rem 0rem 6rem 2rem;
+}
+.dataGraph::-webkit-scrollbar {
+  width: 10px; /* Width of the scrollbar */
+}
+
+.dataGraph::-webkit-scrollbar-track {
+  background: #1d4ed8; /* Color of the scrollbar track */
+}
+
+.dataGraph::-webkit-scrollbar-thumb {
+  background: #60a5fa; /* Color of the scrollbar thumb */
+  border-radius: 5px; /* Radius of the scrollbar thumb */
+}
+
+.dataGraph::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color of the scrollbar thumb on hover */
 }
 .todoUser {
     border-radius: .25rem;
     padding: 0 .5rem ;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 6rem;
-    background-color: rgba(255,255,255,.12)
+    background-color: rgba(255,255,255,.12);
+     width: 30vw;
+    height: 10vh;
+}
+.todoUser:hover{
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+     background-color: transparent;
+     background-color: rgba(255,255,255,.025);
+     border: 1px solid rgba(255,255,255,.12);
+     transform: scale(1.12)
 }
 .todoUser p {
     color: #ccc;
+    font-size: 1vw;
 }
 .todoUser span {
     color:#3b82f6;
